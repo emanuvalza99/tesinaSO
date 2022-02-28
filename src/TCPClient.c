@@ -22,7 +22,7 @@ int listen_sock;
 
 void *recive_mex(void* i){
    
-   unsigned long index=(unsigned long)i;
+  
    
    char buffer[4096];
    int n_bytes;
@@ -50,8 +50,8 @@ void *recive_mex(void* i){
 
 void *send_mex(void *i){
    
-   unsigned long index=(unsigned long)i;
    
+ 
    char buffer[4096];
    
    while(1){      
@@ -256,14 +256,14 @@ int main(int argc,char **argv){
     }
     printf("connessione stabilita %s\n",inet_ntoa(servADDR.sin_addr));
     pthread_t tid;
-    unsigned long z;
+    
     pthread_mutex_init(&done,NULL);
     pthread_mutex_lock(&done);
     
     volonta();
     
-    pthread_create(&tid,NULL,recive_mex,(void*)z);
-    pthread_create(&tid,NULL,send_mex,(void*)z);
+    pthread_create(&tid,NULL,recive_mex, NULL);
+    pthread_create(&tid,NULL,send_mex, NULL);
     
     syscall(60,0);
 }
